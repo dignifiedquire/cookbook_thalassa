@@ -2,4 +2,6 @@ site :opscode
 
 metadata
 
-cookbook 'haproxy'
+cookbook 'haproxy', path: '/Users/dignifiedquire/work/codio/thalassa/vendors/cookbooks/haproxy'
+cookbook 'nvm'
+cookbook 'npm'
