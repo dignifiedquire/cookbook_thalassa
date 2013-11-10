@@ -23,6 +23,14 @@ $ berks install
 $ vagrant up
 ```
 
+# Todo
+
+* Add redis
+* Make haproxy work including stats
+* Setup sample client
+* Document attributes
+* Document recipes
+
 # Author
 
 Friedel Ziegelmayer <dignifiedquire@gmail.com>
