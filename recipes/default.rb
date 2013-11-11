@@ -40,6 +40,7 @@ directory node[:thalassa][:install_dir] do
 end
 
 # Install and setup
+include_recipe 'thalassa::server'
 include_recipe 'thalassa::crowsnest'
 
 include_recipe 'thalassa::haproxy'

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: thalassa
-# Recipe:: crowsnest
+# Recipe:: server
 #
 # Copyright (C) 2013 Friedel Ziegelmayer
 #
@@ -8,9 +8,9 @@
 #
 
 
-include_recipe 'npm'
+include_recipe "npm"
 
-npm_package 'thalassa-crowsnest' do
+npm_package 'thalassa' do
   action :install_local
   path node[:thalassa][:install_dir]
 end
@@ -23,33 +23,34 @@ execute 'chown' do
   command "sudo chown -R #{user}:#{group} #{node[:thalassa][:install_dir]}"
 end
 
+
 #
-# Allow the thalassa user to start/stop thalassa-crowsnest via Upstart.
+# Allow the thalassa user to start/stop thalassa via Upstart.
 #
 sudo "#{node[:thalassa][:user]}-upstart" do
   user node[:thalassa][:user]
-  commands ['/sbin/start thalassa-crowsnest', '/sbin/stop thalassa-crowsnest',
-    '/sbin/restart thalassa-crowsnest', '/sbin/status thalassa-crowsnest']
+  commands ['/sbin/start thalassa', '/sbin/stop thalassa',
+    '/sbin/restart thalassa', '/sbin/status thalassa']
   nopasswd true
 end
 
 #
 # Install Upstart script
 #
-service 'thalassa-crowsnest' do
+service 'thalassa' do
   provider Chef::Provider::Service::Upstart
   supports :restart => true, :start => true, :stop => true
 end
 
-template 'thalassa-crowsnest.upstart.conf' do
-  path '/etc/init/thalassa-crowsnest.conf'
-  source 'thalassa-crowsnest.upstart.conf.erb'
+template 'thalassa.upstart.conf' do
+  path '/etc/init/thalassa.conf'
+  source 'thalassa.upstart.conf.erb'
   owner 'root'
   group 'root'
   mode '0644'
-  notifies :restart, 'service[thalassa-crowsnest]'
+  notifies :restart, 'service[thalassa]'
 end
 
-service 'thalassa-crowsnest' do
+service 'thalassa' do
   action [ :enable, :start ]
 end

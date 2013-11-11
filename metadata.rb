@@ -13,6 +13,7 @@ depends 'sudo'
 
 recipe 'thalassa::default',   'Combination of all recipes.'
 recipe 'thalassa::crowsnest', 'Install the frontend of thalassa, thalassa-crowsnest.'
+recipe 'thalassa::server', 'Install thalassa itself and run the server part.'
 recipe 'thalassa::haproxy', 'Install haproxy setup for use with thalassa.'
 
 
