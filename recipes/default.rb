@@ -12,25 +12,17 @@
 
 group node[:thalassa][:group]
 
-user node[:thalassa][:user] do
-  gid node[:thalassa][:group]
-  supports :manage_home => true
-  home "/home/#{node[:thalassa][:user]}"
-  shell '/bin/bash'
-  action :create
+if search(:users, "id:#{node[:sharejs][:user]}").empty?
+  group nodr[:thalassa][:group]
+  user node[:thalassa][:user] do
+    gid node[:thalassa][:group]
+  end
 end
 
 
-# install nvm
-include_recipe 'nvm'
+# Install Node
+include_recipe 'nodejs'
 
-
-# install node.js v0.10.21
-nvm_install 'v0.10.21'  do
-  from_source false
-  alias_as_default true
-  action :create
-end
 
 # Create app directory
 directory node[:thalassa][:install_dir] do
@@ -42,5 +34,5 @@ end
 # Install and setup
 include_recipe 'thalassa::server'
 include_recipe 'thalassa::crowsnest'
+include_recipe 'thalassa::aqueduct'
 
-include_recipe 'thalassa::haproxy'

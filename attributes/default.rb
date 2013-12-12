@@ -1,6 +1,6 @@
 # haproxy
-default['haproxy']['enable_default_http'] = false
-default['haproxy']['listeners'] = {
+default[:haproxy][:enable_default_http] = false
+default[:haproxy][:listeners] = {
   'frontend' => {
     'crowsnest' => [
       'bind *:80',
@@ -21,18 +21,19 @@ default['haproxy']['listeners'] = {
     ]
   }
 }
-default['haproxy']['enable_stats_socket'] = false
-default['haproxy']['stats_socket_path'] = "/var/run/haproxy.sock"
-default['haproxy']['stats_socket_user'] = node['haproxy']['user']
-default['haproxy']['stats_socket_group'] = node['haproxy']['group']
+default[:haproxy][:enable_stats_socket] = false
+default[:haproxy][:stats_socket_path] = '/var/run/haproxy.sock'
+default[:haproxy][:stats_socket_user] = node[:haproxy][:user]
+default[:haproxy][:stats_socket_group] = node[:haproxy][:group]
 
 
-# npm
+# NodeJS
 
-default['npm']['version'] = '1.3.11'
+default[:nodejs][:install_method] = 'package'
+default[:nodejs][:version] = '0.10.23'
 
 
 # Thalass Crowsnest
 default[:thalassa][:user] = 'thalassa'
 default[:thalassa][:group] = default[:thalassa][:user]
-default[:thalassa][:install_dir] = '/var/www/thalassa'
+default[:thalassa][:install_dir] = '/opt/thalassa'

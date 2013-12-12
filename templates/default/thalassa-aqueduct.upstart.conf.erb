@@ -1,0 +1,10 @@
+# Upstart script for thalassa-aqueduct
+respawn
+
+setuid <%= node[:thalassa][:user] %>
+setgid <%= node[:thalassa][:group] %>
+
+start on filesystem
+stop on runlevel [06]
+
+exec <%= node[:thalassa][:install_dir] %>/node_modules/.bin/thalassa-aqueduct
