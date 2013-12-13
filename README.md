@@ -61,7 +61,7 @@ $ vagrant up
 * use attributes for service definitions of
   * thalassa-server
   * thalassa-aqueduct
-  * thalassa-crowsnest
+  * thalassa-crowsnest (done)
 * lwrp for
   * frontends
   * backends

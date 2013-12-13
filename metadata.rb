@@ -12,6 +12,7 @@ depends 'npm'
 depends 'sudo'
 depends 'git'
 depends 'apt'
+depends 'redis'
 
 recipe 'thalassa::default',   'Combination of all recipes.'
 recipe 'thalassa::git',       'Install the latest version of git.'

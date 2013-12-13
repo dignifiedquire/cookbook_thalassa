@@ -8,7 +8,14 @@ describe 'thalassa aqueduct' do
     it { should be_owned_by 'thalassa' }
   end
 
+  # Template file
+  describe file '/opt/thalassa/default.haproxycfg.tmpl' do
+    it { should be_file }
+    it { should be_owned_by 'thalassa' }
+  end
+
   describe service 'thalassa-aqueduct' do
     it { should be_running }
   end
+
 end

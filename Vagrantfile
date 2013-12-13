@@ -12,6 +12,10 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--cpuexecutioncap", "70"]
   end
 
+
+  config.vm.network :forwarded_port, :guest => 80, :host => 8888
+  config.vm.network :forwarded_port, :guest => 8080, :host => 8080
+
   config.chef_zero.chef_repo_path = 'test/fixtures/'
 
   config.vm.provision :chef_client do |chef|

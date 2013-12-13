@@ -8,6 +8,16 @@ describe 'thalassa crowsnest' do
     it { should be_owned_by 'thalassa' }
   end
 
+  describe file '/etc/init/thalassa-crowsnest.conf' do
+    it { should be_file }
+    its :content do
+      should include 'setuid thalassa'
+      should include 'setgid thalassa'
+      should include 'CMD=/opt/thalassa/node_modules/.bin/thalassa-crowsnest'
+      should include 'CMD="$CMD --host 0.0.0.0"'
+    end
+  end
+
   describe service 'thalassa-crowsnest' do
     it { should be_running }
   end

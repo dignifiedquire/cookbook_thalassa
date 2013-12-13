@@ -4,7 +4,7 @@
 default[:thalassa][:user] = 'thalassa'
 default[:thalassa][:group] = default[:thalassa][:user]
 default[:thalassa][:install_dir] = '/opt/thalassa'
-
+default[:thalassa][:debug] = false
 
 #
 # Thalassa Server
@@ -15,37 +15,37 @@ default[:thalassa_server][:host] = '127.0.0.1'
 # port to bind to for axon socket
 default[:thalassa_server][:port] = 5001
 # host to bind to
-default[:thalassa_server][:apiHost] = '127.0.0.1'
+default[:thalassa_server][:api_host] = '127.0.0.1'
 # port to bind to for http api
-default[:thalassa_server][:apiPort] = 9000
+default[:thalassa_server][:api_port] = 9000
 # Redis host
-default[:thalassa_server][:redisHost] = '127.0.0.1'
+default[:thalassa_server][:redis_host] = default[:redis][:bind]
 # Redis port
-default[:thalassa_server][:redisPort] = 6379
+default[:thalassa_server][:redis_port] = default[:redis][:port]
 # Redis database to select
-default[:thalassa_server][:redisDatabase] = 0
+default[:thalassa_server][:redis_database] = 0
 # Reaper frequency (ms)
-default[:thalassa_server][:reaperFreq] = 2000
+default[:thalassa_server][:reaper_freq] = 2000
 # enabled debug logging
-default[:thalassa_server][:debug] = false
+default[:thalassa_server][:debug] = default[:thalassa][:debug]
 
 #
 # Thalassa Crowsnest
 #
 # host to bind to
-default[:thalassa_crowsnest][:host] = default[:thalassa][:host]
+default[:thalassa_crowsnest][:host] = '0.0.0.0'
 # port to bind to
-default[:thalassa_crowsnest][:port] = default[:thalassa][:port]
+default[:thalassa_crowsnest][:port] = 8080
 # host of the Thalassa server
-default[:thalassa_crowsnest][:thalassaHost] = default[:thalassa_server][:host]
+default[:thalassa_crowsnest][:thalassa_host] = default[:thalassa_server][:host]
 # port of the Thalassa server
-default[:thalassa_crowsnest][:thalassaPort] = default[:thalassa_server][:port]
+default[:thalassa_crowsnest][:thalassa_port] = default[:thalassa_server][:port]
 # port of the Thalassa server
-default[:thalassa_crowsnest][:thalassaApiPort] = default[:thalassa_server][:apiPort]
+default[:thalassa_crowsnest][:thalassa_api_port] = default[:thalassa_server][:api_port]
 # filesystem path for leveldb
-default[:thalassa_crowsnest][:dbPath] = './node_modules/thalassa-crowsnest/bin/db'
+default[:thalassa_crowsnest][:db_path] = './node_modules/thalassa-crowsnest/bin/db'
 # enabled debug logging
-default[:thalassa_crowsnest][:thalassaApiPort] = default[:thalassa][:debug]
+default[:thalassa_crowsnest][:debug] = default[:thalassa][:debug]
 
 #
 # Thalassa Aqueduct
@@ -58,52 +58,37 @@ default[:thalassa_aqueduct][:port] = 10000
 # logical label for this aqueduct
 default[:thalassa_aqueduct][:label] = 'aqueduct1'
 # host of the Thalassa server
-default[:thalassa_aqueduct][:thalassaHost] = '127.0.0.1'
+default[:thalassa_aqueduct][:thalassa_host] = '127.0.0.1'
 # socket port of the Thalassa server
-default[:thalassa_aqueduct][:thalassaPort] = 5001
+default[:thalassa_aqueduct][:thalassa_port] = 5001
 # http API port of the Thalassa server
-default[:thalassa_aqueduct][:thalassaApiPort] = 9000
+default[:thalassa_aqueduct][:thalassa_api_port] = 9000
 # path to Haproxy socket file
-default[:thalassa_aqueduct][:haproxySocketPath] = '/tmp/haproxy.status.sock'
+default[:thalassa_aqueduct][:haproxy_socket_path] = default[:haproxy][:stats_socket_path]
 # path to  Haproxy pid file
-default[:thalassa_aqueduct][:haproxyPidPath] = '/var/run/haproxy.pid'
+default[:thalassa_aqueduct][:haproxy_pid_path] = default[:haproxy][:pid_file]
 # generated Haproxy config location
-default[:thalassa_aqueduct][:haproxyCfgPath] = '/etc/haproxy/haproxy.cfg'
+default[:thalassa_aqueduct][:haproxy_cfg_path] = '/etc/haproxy/haproxy.cfg'
 # template used to generate haproxy config
-default[:thalassa_aqueduct][:templateFile] = 'default.haproxycfg.tmpl'
+default[:thalassa_aqueduct][:template_file] = 'default.haproxycfg.tmpl'
 # directory to save configuration
-default[:thalassa_aqueduct][:persistence] = "#{default[:thalassa][:install_dir]}"
+default[:thalassa_aqueduct][:persistence] = default[:thalassa][:install_dir]
 # use sudo when starting haprox
 default[:thalassa_aqueduct][:sudo] = false
 # enabled debug logging
-default[:thalassa_aqueduct][:debug] = false
+default[:thalassa_aqueduct][:debug] = default[:thalassa][:debug]
+
+# Login for stats
+default[:thalassa_aqueduct][:stats_user] = 'admin'
+default[:thalassa_aqueduct][:stats_password] = '123'
 
 #
 # haproxy
 #
+default[:haproxy][:user] = 'haproxy'
+default[:haproxy][:group] = node[:haproxy][:user]
 default[:haproxy][:enable_default_http] = false
-default[:haproxy][:listeners] = {
-  'frontend' => {
-    'crowsnest' => [
-      'bind *:80',
-      'mode http',
-      'option forwardfor',
-      'option httpclose',
-      'default_backend crowsnest'
-    ]
-  },
-  'backend' => {
-    'crowsnest' => [
-      'stats enable',
-      'stats hide-version',
-      'stats realm Haproxy\ Statistics',
-      'stats uri /haproxy?stats',
-      'stats auth friedel:secret',
-      'server crowsnest01 127.0.0.1:8080 check'
-    ]
-  }
-}
-default[:haproxy][:enable_stats_socket] = false
+default[:haproxy][:enable_stats_socket] = true
 default[:haproxy][:stats_socket_path] = '/var/run/haproxy.sock'
 default[:haproxy][:stats_socket_user] = node[:haproxy][:user]
 default[:haproxy][:stats_socket_group] = node[:haproxy][:group]

@@ -40,6 +40,18 @@ sudo "#{user}-upstart" do
   nopasswd true
 end
 
+
+#
+# Copy haproxy template
+#
+template 'thalassa.haproxycfg.tmpl.erb' do
+  path "#{node[:thalassa][:install_dir]}/#{node[:thalassa_aqueduct][:template_file]}"
+  source 'thalassa.haproxycfg.tmpl.erb'
+  owner 'thalassa'
+  group 'thalassa'
+end
+
+
 #
 # Install Upstart script
 #
@@ -57,7 +69,6 @@ template 'thalassa-aqueduct.upstart.conf' do
   notifies :restart, 'service[thalassa-aqueduct]'
 end
 
-service 'thalassa' do
+service 'thalassa-aqueduct' do
   action [ :enable, :start ]
 end
-
