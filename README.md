@@ -44,11 +44,14 @@ $ vagrant up
 * haproxy
   * template for thalassa-aqueduct
   * secure thalassa-crowsnest interface using simple auth
+  * expose haproxy stats page
 * use attributes for service definitions of
   * thalassa-server
   * thalassa-aqueduct
   * thalassa-crowsnest
-
+* lwrp for
+  * frontends
+  * backends
 
 ## Author
 
