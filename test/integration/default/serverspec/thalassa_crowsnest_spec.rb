@@ -14,7 +14,7 @@ describe 'thalassa crowsnest' do
       should include 'setuid thalassa'
       should include 'setgid thalassa'
       should include 'CMD=/opt/thalassa/node_modules/.bin/thalassa-crowsnest'
-      should include 'CMD="$CMD --host 0.0.0.0"'
+      should include 'CMD="$CMD --host 127.0.0.1"'
     end
   end
 

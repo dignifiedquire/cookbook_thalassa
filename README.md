@@ -60,8 +60,6 @@ $ vagrant up
   * expose haproxy stats page
 * use attributes for service definitions of
   * thalassa-server
-  * thalassa-aqueduct
-  * thalassa-crowsnest (done)
 * lwrp for
   * frontends
   * backends

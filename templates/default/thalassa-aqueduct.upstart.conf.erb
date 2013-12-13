@@ -7,4 +7,20 @@ setgid <%= node[:thalassa][:group] %>
 start on filesystem
 stop on runlevel [06]
 
-exec <%= node[:thalassa][:install_dir] %>/node_modules/.bin/thalassa-aqueduct
+script
+  CMD=<%= node[:thalassa][:install_dir] %>/node_modules/.bin/thalassa-aqueduct
+  CMD="$CMD --host <%= node[:thalassa_aqueduct][:host] %>"
+  CMD="$CMD --port <%= node[:thalassa_aqueduct][:port] %>"
+  CMD="$CMD --label <%= node[:thalassa_aqueduct][:label] %>"
+  CMD="$CMD --thalassaHost <%= node[:thalassa_aqueduct][:thalassa_host] %>"
+  CMD="$CMD --thalassaPort <%= node[:thalassa_aqueduct][:thalassa_port] %>"
+  CMD="$CMD --thalassaApiPort <%= node[:thalassa_aqueduct][:thalassa_api_port] %>"
+  CMD="$CMD --haproxySocketPath <%= node[:thalassa_aqueduct][:haproxy_socket_path] %>"
+  CMD="$CMD --haproxyPidPath <%= node[:thalassa_aqueduct][:haproxy_pid_path] %>"
+  CMD="$CMD --haproxyCfgPath <%= node[:thalassa_aqueduct][:haproxy_cfg_path] %>"
+  CMD="$CMD --templateFile <%= node[:thalassa_aqueduct][:template_file] %>"
+  CMD="$CMD --persistence <%= node[:thalassa_aqueduct][:persistence] %>"
+  <% if node[:thalassa_aqueduct][:sudo]%>CMD="$CMD --sudo"<% end %>
+  <% if node[:thalassa_aqueduct][:debug]%>CMD="$CMD --debug"<% end %>
+  exec $CMD
+end script
