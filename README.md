@@ -18,30 +18,7 @@ and configuration.
 
 ## Configuration
 
-The following variables are used to configure the setup.
-
-### `haproxy`
-* `user = 'haproxy'`
-* `group = 'haproxy'`
-* `enable_default_http = false`
-* `listeners`
-* `enable_stats_socket = false`
-* `stats_socket_path = "/var/run/haproxy.sock"`
-* `stats_socket_user = node['haproxy']['user']`
-* `stats_socket_group = node['haproxy']['group']`
-
-
-### `nodejs`
-
-* `install_method = 'package'`
-* `version = '0.10.23'`
-
-
-### `thalassa`
-* `user = 'thalassa'`
-* `group = default[:thalassa][:user]`
-* `install_dir = '/opt/thalassa'`
-
+See `attributes/default.rb` for all available options.
 
 ## Development
 
@@ -62,8 +39,18 @@ $ vagrant plugin install vagrant-chef-zero
 $ vagrant up
 ```
 
+## Todo
 
-# Author
+* haproxy
+  * template for thalassa-aqueduct
+  * secure thalassa-crowsnest interface using simple auth
+* use attributes for service definitions of
+  * thalassa-server
+  * thalassa-aqueduct
+  * thalassa-crowsnest
+
+
+## Author
 
 Friedel Ziegelmayer <dignifiedquire@gmail.com>
 

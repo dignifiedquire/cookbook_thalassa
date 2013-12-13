@@ -7,9 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-
-include_recipe "npm"
-
+#
+# Install thalassa npm package
+#
 npm_package 'thalassa' do
   action :install_local
   path node[:thalassa][:install_dir]
@@ -18,7 +18,9 @@ end
 user = node[:thalassa][:user]
 group = node[:thalassa][:group]
 
+#
 # Chown directory to the right user after npm install
+#
 execute 'chown' do
   command "sudo chown -R #{user}:#{group} #{node[:thalassa][:install_dir]}"
 end
@@ -27,8 +29,8 @@ end
 #
 # Allow the thalassa user to start/stop thalassa via Upstart.
 #
-sudo "#{node[:thalassa][:user]}-upstart" do
-  user node[:thalassa][:user]
+sudo "#{user}-upstart" do
+  user user
   commands ['/sbin/start thalassa', '/sbin/stop thalassa',
     '/sbin/restart thalassa', '/sbin/status thalassa']
   nopasswd true

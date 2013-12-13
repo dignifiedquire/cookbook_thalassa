@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-
+#
 # Install haproxy
+#
 include_recipe 'haproxy'

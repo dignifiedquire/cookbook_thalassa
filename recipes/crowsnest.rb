@@ -8,8 +8,9 @@
 #
 
 
-include_recipe 'npm'
-
+#
+# Install thalassa-crowsnest npm package
+#
 npm_package 'thalassa-crowsnest' do
   action :install_local
   path node[:thalassa][:install_dir]
@@ -18,7 +19,9 @@ end
 user = node[:thalassa][:user]
 group = node[:thalassa][:group]
 
+#
 # Chown directory to the right user after npm install
+#
 execute 'chown' do
   command "sudo chown -R #{user}:#{group} #{node[:thalassa][:install_dir]}"
 end
@@ -26,8 +29,8 @@ end
 #
 # Allow the thalassa user to start/stop thalassa-crowsnest via Upstart.
 #
-sudo "#{node[:thalassa][:user]}-upstart" do
-  user node[:thalassa][:user]
+sudo "#{user}-upstart" do
+  user user
   commands ['/sbin/start thalassa-crowsnest', '/sbin/stop thalassa-crowsnest',
     '/sbin/restart thalassa-crowsnest', '/sbin/status thalassa-crowsnest']
   nopasswd true

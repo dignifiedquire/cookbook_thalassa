@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "npm"
-
 #
 # Install haproxy
 #
@@ -36,8 +34,8 @@ end
 #
 # Allow the thalassa user to start/stop thalassa via Upstart.
 #
-sudo "#{node[:thalassa][:user]}-upstart" do
-  user node[:thalassa][:user]
+sudo "#{user}-upstart" do
+  user user
   commands ['/sbin/start thalassa-aqueduct', '/sbin/stop thalassa-aqueduct',
     '/sbin/restart thalassa-aqueduct', '/sbin/status thalassa-aqueduct']
   nopasswd true

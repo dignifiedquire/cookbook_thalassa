@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'default recipe' do
+describe 'user' do
 
   describe user 'thalassa' do
     it { should exist }

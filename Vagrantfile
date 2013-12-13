@@ -6,6 +6,12 @@ Vagrant.configure("2") do |config|
   config.omnibus.chef_version = :latest
   config.berkshelf.enabled = true
 
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", "1024"]
+    v.customize ["modifyvm", :id, "--cpus", "2"]
+    v.customize ["modifyvm", :id, "--cpuexecutioncap", "70"]
+  end
+
   config.chef_zero.chef_repo_path = 'test/fixtures/'
 
   config.vm.provision :chef_client do |chef|
