@@ -12,9 +12,22 @@ and configuration.
 ## Recipes
 
 ### thalassa::default
+Combine all recipes below and setup the installation directory and a thalassa user/group.
+
 ### thalassa::server
+Install and setup [thalassa-server].
+
 ### thalassa::aqueduct
+Install and setup [thalassa-aqueduct].
+
 ### thalassa::crowsnest
+Install and setup [thalassa-crowsnest].
+
+### thalassa::git
+Install the latest version of git from this [ppa].
+
+### thalassa::haproxy
+Install [haproxy].
 
 ## Configuration
 
@@ -63,3 +76,10 @@ Friedel Ziegelmayer <dignifiedquire@gmail.com>
 ## License
 
 MIT License
+
+[haproxy]: http://haproxy.1wt.eu/
+[thalassa]: https://github.com/PearsonEducation/thalassa
+[thalassa-server]: https://github.com/PearsonEducation/thalassa
+[thalassa-crowsnest]: https://github.com/PearsonEducation/thalassa-crowsnest
+[thalassa-aqueduct]: https://github.com/PearsonEducation/thalassa-aqueduct
+[ppa]: http://ppa.launchpad.net/git-core/ppa/ubuntu
