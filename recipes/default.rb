@@ -4,8 +4,7 @@
 #
 # Copyright (C) 2013 Friedel Ziegelmayer
 #
-# All rights reserved - Do Not Redistribute
-#
+
 
 #
 # Create the thalassa user and group that thalassa will run as.

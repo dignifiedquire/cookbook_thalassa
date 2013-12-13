@@ -56,3 +56,7 @@ Friedel Ziegelmayer <dignifiedquire@gmail.com>
 
 [thalassa]: https://github.com/PearsonEducation/thalassa
 [haproxy]: http://haproxy.1wt.eu/
+
+## License
+
+MIT License

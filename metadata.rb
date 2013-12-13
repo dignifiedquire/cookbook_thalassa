@@ -1,7 +1,7 @@
 name             'thalassa'
 maintainer       'Friedel Ziegelmayer'
 maintainer_email 'dignifiedquire@gmail.com'
-license          'All rights reserved'
+license          'MIT License'
 description      'Installs and configures thalassa.'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '1.0.0'
