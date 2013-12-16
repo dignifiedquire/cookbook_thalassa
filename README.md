@@ -5,8 +5,34 @@ Install [thalassa] and all requirements including [haproxy].
 
 ## Usage
 
-Just `include_recipe 'thalassa'` and you're good to go. For more see recipes
-and configuration.
+Just `include_recipe 'thalassa'` and you're good to go. For more see recipes and configuration.
+
+
+## Resources and Providers
+
+### frontend
+
+Manage Thalassa frontends.
+
+#### Actions:
+- `create` - Create or update a frontend
+- `delete` - Delete a frontend
+
+#### Attributes:
+Accepts the exact same attributes as detailed in the Thalassa Aqueduct [docs](https://github.com/PearsonEducation/thalassa-aqueduct#put-frontendsname)
+
+
+### backend
+
+Manage Thalassa backends.
+
+#### Actions:
+- `create` - Create or update a backend
+- `delete` - Delete a backend
+
+#### Attributes:
+Accepts the exact same attributes as detailed in the Thalassa Aqueduct [docs](https://github.com/PearsonEducation/thalassa-aqueduct#put-backendsname)
+
 
 
 ## Recipes
@@ -40,7 +66,7 @@ together with Guard and Vagrant for continuous testing.
 
 ```bash
 $ bundle install
-$ be guard
+$ bundle exec guard
 ```
 
 ### With Vagrant
