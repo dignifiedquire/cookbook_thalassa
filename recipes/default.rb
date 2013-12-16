@@ -47,5 +47,3 @@ include_recipe 'thalassa::git'
 include_recipe 'thalassa::server'
 include_recipe 'thalassa::crowsnest'
 include_recipe 'thalassa::aqueduct'
-
-

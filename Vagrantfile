@@ -15,16 +15,13 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :forwarded_port, :guest => 80, :host => 8888
   config.vm.network :forwarded_port, :guest => 8080, :host => 8080
+  config.vm.network :forwarded_port, :guest => 10000, :host => 10001
 
   config.chef_zero.chef_repo_path = 'test/fixtures/'
 
   config.vm.provision :chef_client do |chef|
     chef.json = {
       vagrant: true, # required in order to detect vagrant usage in recipes.
-      monitor: {
-        master_address: 'localhost',
-        environment_aware_search: false
-      }
     }
     chef.add_recipe 'thalassa::default'
   end
