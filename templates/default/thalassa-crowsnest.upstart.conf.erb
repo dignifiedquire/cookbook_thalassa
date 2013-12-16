@@ -7,8 +7,10 @@ setgid <%= node[:thalassa][:group] %>
 start on filesystem
 stop on runlevel [06]
 
+chdir <%= node[:thalassa][:install_dir] %>
+
 script
-  CMD=<%= node[:thalassa][:install_dir] %>/node_modules/.bin/thalassa-crowsnest
+  CMD=./node_modules/.bin/thalassa-crowsnest
   CMD="$CMD --host <%= node[:thalassa_crowsnest][:host] %>"
   CMD="$CMD --port <%= node[:thalassa_crowsnest][:port] %>"
   CMD="$CMD --thalassaHost <%= node[:thalassa_crowsnest][:thalassa_host] %>"
