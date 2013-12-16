@@ -13,11 +13,11 @@ script
   CMD=./node_modules/.bin/thalassa-server
   CMD="$CMD --host <%= node[:thalassa_server][:host] %>"
   CMD="$CMD --port <%= node[:thalassa_server][:port] %>"
-  CMD="$CMD --apihost <%= node[:thalassa_server][:thalassa_api_host] %>"
-  CMD="$CMD --apiport <%= node[:thalassa_server][:thalassa_api_port] %>"
-  CMD="$CMD --redisHost <%= node[:thalassa_server][:thalassa_redis_host] %>"
-  CMD="$CMD --redisPort <%= node[:thalassa_server][:thalassa_redis_port] %>"
-  CMD="$CMD --redisDatabase <%= node[:thalassa_server][:thalassa_redis_database] %>"
+  CMD="$CMD --apihost <%= node[:thalassa_server][:api_host] %>"
+  CMD="$CMD --apiport <%= node[:thalassa_server][:api_port] %>"
+  CMD="$CMD --redisHost <%= node[:thalassa_server][:redis_host] %>"
+  CMD="$CMD --redisPort <%= node[:thalassa_server][:redis_port] %>"
+  CMD="$CMD --redisDatabase <%= node[:thalassa_server][:redis_database] %>"
   CMD="$CMD --reaperFreq <%= node[:thalassa_server][:reaper_freq] %>"
   <% if node[:thalassa_server][:debug]%>CMD="$CMD --debug"<% end %>
 
