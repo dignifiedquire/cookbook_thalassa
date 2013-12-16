@@ -24,7 +24,5 @@ script
   <% if node[:thalassa_aqueduct][:sudo]%>CMD="$CMD --sudo"<% end %>
   <% if node[:thalassa_aqueduct][:debug]%>CMD="$CMD --debug"<% end %>
 
-  . /etc/environemnt
-  export PATH
   exec $CMD
 end script
