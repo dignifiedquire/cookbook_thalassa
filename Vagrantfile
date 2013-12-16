@@ -26,6 +26,6 @@ Vagrant.configure("2") do |config|
         environment_aware_search: false
       }
     }
-    chef.add_recipe 'sharejs::default'
+    chef.add_recipe 'thalassa::default'
   end
 end
