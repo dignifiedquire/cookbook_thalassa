@@ -33,7 +33,7 @@ default[:thalassa_server][:debug] = default[:thalassa][:debug]
 # Thalassa Crowsnest
 #
 # host to bind to
-default[:thalassa_crowsnest][:host] = '127.0.0.1'
+default[:thalassa_crowsnest][:host] = '0.0.0.0'
 # port to bind to
 default[:thalassa_crowsnest][:port] = 8080
 # host of the Thalassa server
