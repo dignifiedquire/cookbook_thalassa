@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :forwarded_port, :guest => 80, :host => 8888
   config.vm.network :forwarded_port, :guest => 8080, :host => 8080
+  config.vm.network :forwarded_port, :guest => 1988, :host => 1988
 
   config.chef_zero.chef_repo_path = 'test/fixtures/'
 
