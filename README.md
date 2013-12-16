@@ -84,9 +84,6 @@ $ vagrant up
   * template for thalassa-aqueduct
   * secure thalassa-crowsnest interface using simple auth
   * expose haproxy stats page
-* lwrp for
-  * frontends
-  * backends
 
 ## Author
 
