@@ -13,6 +13,14 @@
 group node[:thalassa][:group]
 user node[:thalassa][:user] do
   gid node[:thalassa][:group]
+  shell '/bin/bash'
+  system true
+end
+
+group 'sudo' do
+  action :modify
+  members node[:thalassa][:user]
+  append true
 end
 
 

@@ -72,9 +72,9 @@ default[:thalassa_aqueduct][:haproxy_cfg_path] = '/etc/haproxy/haproxy.cfg'
 # template used to generate haproxy config
 default[:thalassa_aqueduct][:template_file] = 'default.haproxycfg.tmpl'
 # directory to save configuration
-default[:thalassa_aqueduct][:persistence] = default[:thalassa][:install_dir]
+default[:thalassa_aqueduct][:persistence] = "#{default[:thalassa][:install_dir]}/tmp.js"
 # use sudo when starting haprox
-default[:thalassa_aqueduct][:sudo] = false
+default[:thalassa_aqueduct][:sudo] = true
 # enabled debug logging
 default[:thalassa_aqueduct][:debug] = default[:thalassa][:debug]
 
