@@ -82,8 +82,7 @@ $ vagrant up
 
 * haproxy
   * template for thalassa-aqueduct
-  * secure thalassa-crowsnest interface using simple auth
-  * expose haproxy stats page
+
 
 ## Author
 

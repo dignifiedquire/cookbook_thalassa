@@ -82,6 +82,10 @@ default[:thalassa_aqueduct][:debug] = node[:thalassa][:debug]
 default[:thalassa_aqueduct][:stats_user] = 'user'
 default[:thalassa_aqueduct][:stats_password] = 'pass'
 
+# Login for crowsnest
+default[:thalassa_aqueduct][:user] = 'admin'
+default[:thalassa_aqueduct][:password] = 'pass'
+
 #
 # haproxy
 #

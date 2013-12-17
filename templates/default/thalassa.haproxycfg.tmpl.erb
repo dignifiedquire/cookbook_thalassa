@@ -27,6 +27,22 @@ listen stats :1988
   stats scope .
   stats auth <%= node[:thalassa_aqueduct][:stats_user] %>:<%= node[:thalassa_aqueduct][:stats_password] %>
 
+userlist admins
+  user <%= node[:thalassa_aqueduct][:user] %> insecure-password <%= node[:thalassa_aqueduct][:stats_password] %>
+
+
+frontend incoming
+  bind *:80
+  mode http
+  acl auth_ok http_auth(admins)
+  http-request auth realm Crowsnest unless auth_ok
+  default_backend crowsnest
+
+backend crowsnest
+  mode http
+  server crowsnest01 127.0.0.1:8080 check
+
+
 {{#each frontends}}
   frontend {{name}}
   {{frontendHelper this}}
