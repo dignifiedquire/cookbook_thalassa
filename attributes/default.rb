@@ -79,8 +79,8 @@ default[:thalassa_aqueduct][:sudo] = true
 default[:thalassa_aqueduct][:debug] = node[:thalassa][:debug]
 
 # Login for stats
-default[:thalassa_aqueduct][:stats_user] = 'admin'
-default[:thalassa_aqueduct][:stats_password] = '123'
+default[:thalassa_aqueduct][:stats_user] = 'user'
+default[:thalassa_aqueduct][:stats_password] = 'pass'
 
 #
 # haproxy

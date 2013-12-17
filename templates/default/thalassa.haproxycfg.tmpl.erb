@@ -24,6 +24,7 @@ listen stats :1988
   stats uri /
   stats refresh 2s
   stats realm Haproxy\ Stats
+  stats scope .
   stats auth <%= node[:thalassa_aqueduct][:stats_user] %>:<%= node[:thalassa_aqueduct][:stats_password] %>
 
 {{#each frontends}}
