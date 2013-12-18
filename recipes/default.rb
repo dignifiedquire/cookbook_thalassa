@@ -41,7 +41,9 @@ end
 #
 # Install and setup
 #
-include_recipe 'redis::install_from_package'
+
+
+include_recipe 'redis::install_from_package' if node[:redis][:install]
 include_recipe 'thalassa::git'
 include_recipe 'thalassa::server'
 include_recipe 'thalassa::crowsnest'

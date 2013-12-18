@@ -103,4 +103,8 @@ default[:haproxy][:stats_socket_group] = node[:haproxy][:group]
 default[:nodejs][:install_method] = 'package'
 default[:nodejs][:version] = '0.10.23'
 
+#
+# Redis
+#
+default[:redis][:install] = true
 
