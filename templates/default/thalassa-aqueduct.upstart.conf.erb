@@ -9,7 +9,7 @@ stop on runlevel [06]
 
 chdir <%= node[:thalassa][:install_dir] %>
 script
-  CMD="sudo ./node_modules/.bin/thalassa-aqueduct"
+  CMD="./node_modules/.bin/thalassa-aqueduct"
   CMD="$CMD --host <%= node[:thalassa_aqueduct][:host] %>"
   CMD="$CMD --port <%= node[:thalassa_aqueduct][:port] %>"
   CMD="$CMD --label <%= node[:thalassa_aqueduct][:label] %>"

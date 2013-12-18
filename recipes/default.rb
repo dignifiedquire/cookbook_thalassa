@@ -16,13 +16,6 @@ user node[:thalassa][:user] do
   system true
 end
 
-group 'sudo' do
-  action :modify
-  members node[:thalassa][:user]
-  append true
-end
-
-
 # Install Node
 include_recipe 'nodejs'
 

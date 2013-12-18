@@ -68,13 +68,13 @@ default[:thalassa_aqueduct][:haproxy_socket_path] = node[:haproxy][:stats_socket
 # path to  Haproxy pid file
 default[:thalassa_aqueduct][:haproxy_pid_path] = node[:haproxy][:pid_file]
 # generated Haproxy config location
-default[:thalassa_aqueduct][:haproxy_cfg_path] = '/etc/haproxy/haproxy.cfg'
+default[:thalassa_aqueduct][:haproxy_cfg_path] = '/opt/thalassa/haproxy.cfg'
 # template used to generate haproxy config
 default[:thalassa_aqueduct][:template_file] = 'default.haproxycfg.tmpl'
 # directory to save configuration
 default[:thalassa_aqueduct][:persistence] = "#{default[:thalassa][:install_dir]}/tmp.js"
 # use sudo when starting haprox
-default[:thalassa_aqueduct][:sudo] = true
+default[:thalassa_aqueduct][:sudo] = false
 # enabled debug logging
 default[:thalassa_aqueduct][:debug] = node[:thalassa][:debug]
 
