@@ -19,9 +19,9 @@ default[:thalassa_server][:api_host] = '127.0.0.1'
 # port to bind to for http api
 default[:thalassa_server][:api_port] = 9000
 # Redis host
-default[:thalassa_server][:redis_host] = node[:redis][:bind]
+default[:thalassa_server][:redis_host] = '127.0.0.1'
 # Redis port
-default[:thalassa_server][:redis_port] = node[:redis][:port]
+default[:thalassa_server][:redis_port] = 6379
 # Redis database to select
 default[:thalassa_server][:redis_database] = 0
 # Reaper frequency (ms)

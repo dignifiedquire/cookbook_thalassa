@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
 
   config.chef_zero.chef_repo_path = 'test/fixtures/'
 
-  config.vm.provision :chef_client do |chef|
+  config.vm.provision :chef_solo do |chef|
     chef.json = {
       vagrant: true, # required in order to detect vagrant usage in recipes.
     }
