@@ -18,7 +18,7 @@ class Chef
     end
 
     def create_frontend
-      response = request(:put, "/frontends/#{new_resource}", {
+      response = request(:put, "/frontends/#{new_resource.name}", {
         :bind => new_resource.bind,
         :backend => new_resource.backend,
         :mode => new_resource.mode,
@@ -28,14 +28,14 @@ class Chef
       }.to_json)
 
       unless Net::HTTPOK === response || Net::HTTPCreated === response
-        raise "Could not create thalassa frontend #{new_resource}: #{response.body}"
+        raise "Could not create thalassa frontend #{new_resource.name}: #{response.body}"
       end
 
       response
     end
 
     def delete_frontend
-      request :delete, "/frontends/#{new_resource}"
+      request :delete, "/frontends/#{new_resource.name}"
     end
 
     def create_backend
@@ -52,10 +52,10 @@ class Chef
 
       params[:role] = new_resource.role unless new_resource.role.nil?
 
-      response = request(:put, "/backends/#{new_resource}", params.to_json)
+      response = request(:put, "/backends/#{new_resource.name}", params.to_json)
 
       unless Net::HTTPOK === response || Net::HTTPCreated === response
-        raise "Could not create thalassa backend #{new_resource}: #{response.body}"
+        raise "Could not create thalassa backend #{new_resource.name}: #{response.body}"
       end
 
       response
