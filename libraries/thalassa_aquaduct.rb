@@ -18,6 +18,11 @@ class Chef
     end
 
     def create_frontend
+      # If the backend already exists, do not create or update it.
+      if Net::HTTPOK === request(:get, "/frontends/#{new_resource.name}")
+        return
+      end
+
       response = request(:put, "/frontends/#{new_resource.name}", {
         :bind => new_resource.bind,
         :backend => new_resource.backend,
@@ -34,11 +39,33 @@ class Chef
       response
     end
 
+    def update_frontend
+      response = request(:put, "/frontends/#{new_resource.name}", {
+        :bind => new_resource.bind,
+        :backend => new_resource.backend,
+        :mode => new_resource.mode,
+        :keepalive => new_resource.keepalive,
+        :rules => new_resource.rules,
+        :natives => new_resource.natives
+      }.to_json)
+
+      unless Net::HTTPOK === response || Net::HTTPCreated === response
+        raise "Could not update thalassa frontend #{new_resource.name}: #{response.body}"
+      end
+
+      response
+    end
+
     def delete_frontend
       request :delete, "/frontends/#{new_resource.name}"
     end
 
     def create_backend
+      # If the backend already exists, do not create or update it.
+      if Net::HTTPOK === request(:get, "/backends/#{new_resource.name}")
+        return
+      end
+
       params = {
         :type => new_resource.type,
         :version => new_resource.version,
@@ -49,10 +76,9 @@ class Chef
         :members => new_resource.members,
         :natives => new_resource.natives
       }
-
       params[:role] = new_resource.role unless new_resource.role.nil?
 
-      response = request(:put, "/backends/#{new_resource.name}", params.to_json)
+      response = put_backend(params)
 
       unless Net::HTTPOK === response || Net::HTTPCreated === response
         raise "Could not create thalassa backend #{new_resource.name}: #{response.body}"
@@ -61,9 +87,38 @@ class Chef
       response
     end
 
+    def update_backend
+      params = {
+        :type => new_resource.type,
+        :version => new_resource.version,
+        :balance => new_resource.balance,
+        :host => new_resource.host,
+        :mode => new_resource.mode,
+        :health => new_resource.health,
+        :members => new_resource.members,
+        :natives => new_resource.natives
+      }
+      params[:role] = new_resource.role unless new_resource.role.nil?
+
+      put_backend(params)
+
+      unless Net::HTTPOK === response || Net::HTTPCreated === response
+        raise "Could not update thalassa backend #{new_resource.name}: #{response.body}"
+      end
+
+      response
+    end
+
     def delete_backend
       request :delete, "/backends/#{new_resource.name}"
     end
+
+
+    private
+
+      def put_backend(params)
+        request :put, "/backends/#{new_resource.name}", params.to_json
+      end
 
   end
 end

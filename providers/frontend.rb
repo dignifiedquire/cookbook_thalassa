@@ -11,6 +11,13 @@ action :create do
   end
 end
 
+action :update do
+  converge_by "Updating Thalassa Aqueduct frontend: #{new_resource}" do
+    update_frontend
+    new_resource.updated_by_last_action(true)
+  end
+end
+
 action :delete do
   converge_by "Deleting Thalassa Aqueduct frontend: #{new_resource}" do
     delete_frontend

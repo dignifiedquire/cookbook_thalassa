@@ -15,7 +15,8 @@ Just `include_recipe 'thalassa'` and you're good to go. For more see recipes and
 Manage Thalassa frontends.
 
 #### Actions:
-- `create` - Create or update a frontend
+- `create` - Create a frontend
+- `update` - Update a frontend
 - `delete` - Delete a frontend
 
 #### Attributes:
@@ -27,7 +28,8 @@ Accepts the exact same attributes as detailed in the Thalassa Aqueduct [docs](ht
 Manage Thalassa backends.
 
 #### Actions:
-- `create` - Create or update a backend
+- `create` - Create a backend
+- `update` - Update a backend
 - `delete` - Delete a backend
 
 #### Attributes:
